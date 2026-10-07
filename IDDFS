@@ -1,0 +1,112 @@
+def print_puzzle(state):
+    print(state[0], state[1], state[2])
+    print(state[3], state[4], state[5])
+    print(state[6], state[7], state[8])
+    print()
+
+
+def iddfs(start, goal):
+
+    depth_limit = 0
+
+    while True:
+
+        S = [(start, 0, [])]
+        visited = set()
+
+        while S:
+
+            state, depth, path = S.pop()
+
+            if state == goal:
+                return path
+
+            if depth < depth_limit:
+
+                zero = state.index(0)
+                row = zero // 3
+                col = zero % 3
+
+                moves = []
+
+                if row > 0:
+                    moves.append(("UP", zero - 3))
+
+                if row < 2:
+                    moves.append(("DOWN", zero + 3))
+
+                if col > 0:
+                    moves.append(("LEFT", zero - 1))
+
+                if col < 2:
+                    moves.append(("RIGHT", zero + 1))
+
+                for direction, move in moves:
+
+                    new_state = list(state)
+
+                    new_state[zero], new_state[move] = \
+                        new_state[move], new_state[zero]
+
+                    new_state = tuple(new_state)
+
+                    if new_state not in visited:
+
+                        visited.add(new_state)
+
+                        new_path = path + [direction]
+
+                        S.append((new_state,
+                                  depth + 1,
+                                  new_path))
+
+        depth_limit += 1
+
+
+start = (1, 2, 3,
+         4, 0, 6,
+         7, 5, 8)
+
+goal = (1, 2, 3,
+        4, 5, 6,
+        7, 8, 0)
+
+
+solution = iddfs(start, goal)
+
+print("Start State:")
+print_puzzle(start)
+
+print("Moves:")
+print(solution)
+
+print("\nSolution Steps:")
+
+current = start
+print_puzzle(current)
+
+for move in solution:
+
+    zero = current.index(0)
+
+    if move == "UP":
+        new_zero = zero - 3
+
+    elif move == "DOWN":
+        new_zero = zero + 3
+
+    elif move == "LEFT":
+        new_zero = zero - 1
+
+    else:
+        new_zero = zero + 1
+
+    current = list(current)
+
+    current[zero], current[new_zero] = \
+        current[new_zero], current[zero]
+
+    current = tuple(current)
+
+    print("Move:", move)
+    print_puzzle(current)
