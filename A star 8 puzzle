@@ -1,0 +1,98 @@
+
+import heapq
+
+def heuristic(state, goal):
+    return sum(1 for i in range(9)
+               if state[i] != 0 and state[i] != goal[i])
+
+
+def display(state):
+    for i in range(0, 9, 3):
+        print(state[i], state[i+1], state[i+2])
+
+
+def astar(start, goal):
+    open_list = [(heuristic(start, goal), start)]
+    closed = set()
+
+    g = {start: 0}
+    parent = {start: None}
+
+    print("INITIAL STATE:")
+    display(start)
+
+    while open_list:
+        _, current = heapq.heappop(open_list)
+
+        if current in closed:
+            continue
+
+        if current == goal:
+            path = []
+            state = current
+
+            while state is not None:
+                path.append(state)
+                state = parent[state]
+
+            path.reverse()
+
+            print("\nSOLUTION PATH:")
+            for step, state in enumerate(path):
+                print("\nStep", step)
+                display(state)
+
+            print("\nFINAL STATE:")
+            display(goal)
+            print("\nSolution Success!")
+            print("Total moves:", len(path) - 1)
+            return
+
+        closed.add(current)
+
+        blank = current.index(0)
+        row, col = divmod(blank, 3)
+
+        for dr, dc in [(-1, 0), (1, 0),
+                       (0, -1), (0, 1)]:
+            nr, nc = row + dr, col + dc
+
+            if 0 <= nr < 3 and 0 <= nc < 3:
+                pos = nr * 3 + nc
+                neighbour = list(current)
+
+                neighbour[blank], neighbour[pos] = (
+                    neighbour[pos], neighbour[blank]
+                )
+                neighbour = tuple(neighbour)
+
+                new_g = g[current] + 1
+
+                if new_g < g.get(neighbour, float('inf')):
+                    g[neighbour] = new_g
+                    parent[neighbour] = current
+
+                    f = new_g + heuristic(neighbour, goal)
+
+                    heapq.heappush(
+                        open_list, (f, neighbour)
+                    )
+
+    print("Return Failure: No solution found.")
+
+
+# INITIAL STATE (0 represents the blank space)
+start = (
+    1, 2, 3,
+    4, 0, 6,
+    7, 5, 8
+)
+
+# FINAL / GOAL STATE
+goal = (
+    1, 2, 3,
+    4, 5, 6,
+    7, 8, 0
+)
+
+astar(start, goal)
