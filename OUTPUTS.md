@@ -6,3 +6,4 @@
 <img width="699" height="709" alt="image" src="https://github.com/user-attachments/assets/c7fe96dc-ac19-498f-a32e-38fe2cc644d5" />
 <img width="701" height="713" alt="image" src="https://github.com/user-attachments/assets/65712c58-54ae-48fd-9567-57746b3cfa66" />
 <img width="697" height="704" alt="image" src="https://github.com/user-attachments/assets/e2cdfd61-a94d-481f-99b9-09e6623a3fb1" />
+<img width="698" height="711" alt="Forward Chaining" src="https://github.com/user-attachments/assets/7f996cfe-8373-49f5-8fcc-2eafeed13f95" />
