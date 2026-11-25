@@ -7,3 +7,5 @@
 <img width="701" height="713" alt="image" src="https://github.com/user-attachments/assets/65712c58-54ae-48fd-9567-57746b3cfa66" />
 <img width="697" height="704" alt="image" src="https://github.com/user-attachments/assets/e2cdfd61-a94d-481f-99b9-09e6623a3fb1" />
 <img width="698" height="711" alt="Forward Chaining" src="https://github.com/user-attachments/assets/7f996cfe-8373-49f5-8fcc-2eafeed13f95" />
+<img width="694" height="680" alt="image" src="https://github.com/user-attachments/assets/9a61c07e-9d85-476d-8571-65bb1d517bb6" />
+<img width="726" height="245" alt="image" src="https://github.com/user-attachments/assets/e4aca143-2865-4d63-b4f2-a7f42b6b57b2" />
